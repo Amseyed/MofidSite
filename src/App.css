@@ -1,72 +1,90 @@
 .registry {
-  max-width: 1180px;
+  max-width: 1120px;
   margin: 0 auto;
-  padding: 3.5rem 1.5rem 5rem;
+  padding: 4rem 1.5rem 3rem;
 }
 
+/* ---------- Header ---------- */
 .registry__header {
   text-align: center;
   margin-bottom: 3.5rem;
 }
 
-.registry__eyebrow {
-  display: inline-block;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--mofid-blue);
-  margin-bottom: 0.75rem;
+.registry__crest {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--mofid-navy) 0%, var(--mofid-blue) 100%);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.1rem;
+  box-shadow: 0 6px 18px rgba(58, 123, 213, 0.25);
 }
 
 .registry__title {
-  font-size: 2rem;
-  font-weight: 700;
-  line-height: 1.25;
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.2;
   color: var(--mofid-navy);
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.6rem;
 }
 
 .registry__lead {
-  max-width: 620px;
-  margin: 0 auto;
   font-size: 1rem;
   line-height: 1.7;
   color: var(--mofid-muted);
 }
 
+/* ---------- Sections ---------- */
 .registry__section {
-  margin-bottom: 3.5rem;
+  margin-bottom: 3rem;
 }
 
 .registry__section-title {
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--mofid-navy);
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.6rem;
-  border-bottom: 2px solid var(--mofid-border);
+  margin-bottom: 1.75rem;
+  text-align: center;
   position: relative;
+  padding-bottom: 0.75rem;
 }
 
 .registry__section-title::after {
   content: '';
   position: absolute;
-  bottom: -2px;
-  right: 0;
-  width: 64px;
-  height: 2px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 3px;
+  border-radius: 3px;
   background: var(--mofid-blue);
-  border-radius: 2px;
 }
 
-/* Fluid grid: 3 cols desktop, 2 tablet, 1 mobile */
+/* ---------- Grid ---------- */
 .registry__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.75rem;
+  gap: 1.5rem;
   align-items: stretch;
 }
 
+/* ---------- Footer ---------- */
+.registry__footer {
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--mofid-muted);
+  padding-top: 2rem;
+  border-top: 1px solid var(--mofid-border);
+}
+
+/* ---------- Responsive ---------- */
 @media (max-width: 980px) {
   .registry__grid {
     grid-template-columns: repeat(2, 1fr);
@@ -74,14 +92,14 @@
 }
 
 @media (max-width: 600px) {
+  .registry {
+    padding: 2.75rem 1.25rem 2.5rem;
+  }
   .registry__grid {
     grid-template-columns: 1fr;
     gap: 1.25rem;
   }
-  .registry {
-    padding: 2.5rem 1.25rem 4rem;
-  }
   .registry__title {
-    font-size: 1.6rem;
+    font-size: 1.75rem;
   }
 }

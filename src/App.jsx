@@ -19,11 +19,10 @@ export default function App() {
   return (
     <div className="registry">
       <header className="registry__header">
-        <span className="registry__eyebrow">مدرسه مفید</span>
-        <h1 className="registry__title">بدنه آموزشی و انجمن اولیا</h1>
+        <div className="registry__crest" aria-hidden="true">مفید</div>
+        <h1 className="registry__title">مدرسه مفید</h1>
         <p className="registry__lead">
-          فهرست اعضای مدرسه مفید؛ کارت‌های زیر برای «دبیران و کارکنان» و «اعضای انجمن
-          اولیا و مربیان» به‌صورت یکپارچه طراحی شده‌اند.
+          فهرست اعضای بدنه آموزشی و انجمن اولیا و مربیان
         </p>
       </header>
 
@@ -44,6 +43,8 @@ export default function App() {
           ))}
         </div>
       </section>
+
+      <footer className="registry__footer">مدرسه مفید © ۱۴۰۴</footer>
     </div>
   )
 }

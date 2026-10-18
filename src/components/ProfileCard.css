@@ -1,176 +1,98 @@
 /* ============================================================
-   ProfileCard — "The Scholar's Canvas"
-   Mofid School Professional Registry
+   ProfileCard — circular portrait, Mofid School registry
    ============================================================ */
 
-.profile-card {
-  position: relative;
+.pcard {
   display: flex;
   flex-direction: column;
-  background: var(--mofid-linen);
+  align-items: center;
+  text-align: center;
+  background: #ffffff;
   border: 1px solid var(--mofid-border);
-  border-radius: 24px;
-  overflow: hidden;
-  /* Frozen silhouette — keeps grid alignment regardless of name length */
-  min-height: 360px;
+  border-radius: 20px;
+  padding: 2rem 1.5rem 1.75rem;
   height: 100%;
-  box-shadow: 0 2px 10px rgba(26, 43, 76, 0.04);
-  transition: box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-              border-color 0.4s ease;
-  cursor: default;
+  box-shadow: 0 1px 3px rgba(26, 43, 76, 0.04);
+  transition: box-shadow 0.35s ease, transform 0.35s ease, border-color 0.35s ease;
   outline: none;
 }
 
-/* Keyboard focus — clear, accessible ring */
-.profile-card:focus-visible {
-  box-shadow: 0 0 0 3px rgba(58, 123, 213, 0.25),
-              0 0 0 1px var(--mofid-blue);
+.pcard:focus-visible {
   border-color: var(--mofid-blue);
+  box-shadow: 0 0 0 3px rgba(58, 123, 213, 0.18);
 }
 
-/* ---------- Aperture (circular portrait frame) ---------- */
-.profile-card__aperture {
-  position: relative;
-  flex: 1 1 auto;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.75rem 1.5rem 0.5rem;
-  background: transparent;
+/* ---------- Circular portrait ---------- */
+.pcard__photo-wrap {
+  margin-bottom: 1.25rem;
 }
 
-/* The circular portrait itself */
-.profile-card__portrait {
+.pcard__photo {
   display: block;
-  width: 168px;
-  height: 168px;
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
   object-fit: cover;
   object-position: center top;
-  border-radius: 50%;
-  border: 3px solid var(--mofid-border);
-  background: linear-gradient(160deg, #E9ECF2 0%, #DDE2EB 100%);
-  box-shadow: 0 4px 14px rgba(26, 43, 76, 0.08);
-  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-              border-color 0.4s ease;
+  background: linear-gradient(160deg, #E9ECF2 0%, #D2D8E4 100%);
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 10px rgba(26, 43, 76, 0.10);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Fallback silhouette when no image / image fails */
-.profile-card__portrait--fallback {
+.pcard__photo--fallback {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(160deg, #E9ECF2 0%, #D2D8E4 100%);
 }
 
-.profile-card__initials {
-  font-size: 2.5rem;
+.pcard__initials {
+  font-size: 2rem;
   font-weight: 700;
   color: var(--mofid-navy);
   opacity: 0.22;
   letter-spacing: 0.04em;
 }
 
-/* Circular frame no longer needs the bottom fade */
-.profile-card__aperture-fade {
-  display: none;
-}
-
-/* ---------- Identity block ---------- */
-.profile-card__identity {
-  position: relative;
-  flex: 0 0 auto;
-  padding: 1.25rem 1.5rem 1.5rem;
-  text-align: right;
-}
-
-/* Role as a quiet "tag" above the name */
-.profile-card__role {
-  display: block;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  line-height: 1.5;
-  color: var(--mofid-muted);
-  margin-bottom: 0.4rem;
-  /* Truncate long roles to a single line */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Name — the anchor of the hierarchy */
-.profile-card__name {
-  font-size: 1.25rem;
+/* ---------- Body ---------- */
+.pcard__name {
+  font-size: 1.0625rem;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.4;
   color: var(--mofid-navy);
-  /* Graceful 2-line clamp: long names truncate, card height stays frozen */
+  margin-bottom: 0.35rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  min-height: 3rem; /* reserves 2 lines even for short names */
+  min-height: 2.9rem;
 }
 
-/* Institutional Line — expands on hover */
-.profile-card__line {
-  display: block;
-  height: 2px;
-  width: 0;
-  margin-top: 0.9rem;
-  /* In RTL the line grows from the right (start edge) */
-  margin-right: auto;
-  background: var(--mofid-blue);
-  border-radius: 2px;
-  transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+.pcard__role {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--mofid-blue);
+  line-height: 1.5;
 }
 
-/* ---------- Branding watermark ---------- */
-.profile-card__watermark {
-  position: absolute;
-  bottom: 0.6rem;
-  left: 0.9rem;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: var(--mofid-navy);
-  opacity: 0.05;
-  pointer-events: none;
-  user-select: none;
+/* ---------- Hover ---------- */
+.pcard:hover {
+  border-color: rgba(58, 123, 213, 0.30);
+  box-shadow: 0 12px 28px rgba(26, 43, 76, 0.08);
+  transform: translateY(-3px);
 }
 
-/* ---------- Hover narrative ---------- */
-.profile-card:hover {
-  border-color: rgba(58, 123, 213, 0.35);
-  box-shadow: 0 20px 40px rgba(26, 43, 76, 0.08);
-  transform: translateY(-2px);
+.pcard:hover .pcard__photo {
+  transform: scale(1.05);
 }
 
-.profile-card:hover .profile-card__portrait {
-  transform: scale(1.04);
-  border-color: rgba(58, 123, 213, 0.45);
-}
-
-.profile-card:hover .profile-card__line {
-  width: 56px;
-}
-
-/* ---------- Responsive scaling ---------- */
+/* ---------- Responsive ---------- */
 @media (max-width: 768px) {
-  .profile-card {
-    min-height: 320px;
+  .pcard {
+    padding: 1.75rem 1.25rem 1.5rem;
   }
-  .profile-card__portrait {
-    width: 140px;
-    height: 140px;
-  }
-  .profile-card__identity {
-    padding: 1.1rem 1.25rem 1.35rem;
-  }
-  .profile-card__name {
-    font-size: 1.125rem;
-    min-height: 2.7rem;
+  .pcard__photo {
+    width: 116px;
+    height: 116px;
   }
 }
