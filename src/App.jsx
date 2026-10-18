@@ -3,7 +3,7 @@ import { makePortrait } from './portraits.js'
 import './App.css'
 
 const teachers = [
-  { name: 'امیرحسین فرازمند', role: 'دبیر ریاضیات', image: makePortrait(0) },
+  { name: 'امیرحسین فرازمند', role: 'دبیر ریاضیات', image: '/portraits/amir.png' },
   { name: 'مریم احمدی', role: 'دبیر ادبیات فارسی', image: makePortrait(1) },
   { name: 'سید محمد کاظمی علوی نجف‌آبادی', role: 'دبیر فیزیک و ناظم آموزشی', image: makePortrait(2) },
   { name: 'زهرا موسوی', role: 'دبیر شیمی', image: makePortrait(3) }
