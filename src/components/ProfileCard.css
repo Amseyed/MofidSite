@@ -29,25 +29,31 @@
   border-color: var(--mofid-blue);
 }
 
-/* ---------- Aperture (portrait frame) ---------- */
+/* ---------- Aperture (circular portrait frame) ---------- */
 .profile-card__aperture {
   position: relative;
   flex: 1 1 auto;
   width: 100%;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  background: linear-gradient(160deg, #E9ECF2 0%, #DDE2EB 100%);
-  /* Soft-rectangular: rounded top, subtle bottom — blends into card base */
-  border-radius: 24px 24px 8px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.75rem 1.5rem 0.5rem;
+  background: transparent;
 }
 
+/* The circular portrait itself */
 .profile-card__portrait {
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 168px;
+  height: 168px;
   object-fit: cover;
   object-position: center top;
-  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  border-radius: 50%;
+  border: 3px solid var(--mofid-border);
+  background: linear-gradient(160deg, #E9ECF2 0%, #DDE2EB 100%);
+  box-shadow: 0 4px 14px rgba(26, 43, 76, 0.08);
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.4s ease;
 }
 
 /* Fallback silhouette when no image / image fails */
@@ -66,13 +72,9 @@
   letter-spacing: 0.04em;
 }
 
-/* Subtle blend from portrait into the card base */
+/* Circular frame no longer needs the bottom fade */
 .profile-card__aperture-fade {
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 28%;
-  background: linear-gradient(to bottom, transparent 0%, rgba(250, 250, 250, 0.12) 100%);
-  pointer-events: none;
+  display: none;
 }
 
 /* ---------- Identity block ---------- */
@@ -148,6 +150,7 @@
 
 .profile-card:hover .profile-card__portrait {
   transform: scale(1.04);
+  border-color: rgba(58, 123, 213, 0.45);
 }
 
 .profile-card:hover .profile-card__line {
@@ -158,6 +161,10 @@
 @media (max-width: 768px) {
   .profile-card {
     min-height: 320px;
+  }
+  .profile-card__portrait {
+    width: 140px;
+    height: 140px;
   }
   .profile-card__identity {
     padding: 1.1rem 1.25rem 1.35rem;
