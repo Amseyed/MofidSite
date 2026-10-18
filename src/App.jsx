@@ -1,45 +1,18 @@
 import ProfileCard from './components/ProfileCard.jsx'
+import { makePortrait } from './portraits.js'
 import './App.css'
 
 const teachers = [
-  {
-    name: 'امیرحسین فرازمند',
-    role: 'دبیر ریاضیات',
-    image: 'https://images.unsplash.com/photo-1568602471122-7832951cc55c?w=500&q=80'
-  },
-  {
-    name: 'مریم احمدی',
-    role: 'دبیر ادبیات فارسی',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&q=80'
-  },
-  {
-    name: 'سید محمد کاظمی علوی نجف‌آبادی',
-    role: 'دبیر فیزیک و ناظم آموزشی',
-    image: 'https://images.unsplash.com/photo-1507006320719-36b8d8c8c9c3?w=500&q=80'
-  },
-  {
-    name: 'زهرا موسوی',
-    role: 'دبیر شیمی',
-    image: 'https://images.unsplash.com/photo-1580489944761-4aada93b9593?w=500&q=80'
-  }
+  { name: 'امیرحسین فرازمند', role: 'دبیر ریاضیات', image: makePortrait(0) },
+  { name: 'مریم احمدی', role: 'دبیر ادبیات فارسی', image: makePortrait(1) },
+  { name: 'سید محمد کاظمی علوی نجف‌آبادی', role: 'دبیر فیزیک و ناظم آموزشی', image: makePortrait(2) },
+  { name: 'زهرا موسوی', role: 'دبیر شیمی', image: makePortrait(3) }
 ]
 
 const pta = [
-  {
-    name: 'فاطمه رضایی',
-    role: 'عضو انجمن اولیا و مربیان',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500&q=80'
-  },
-  {
-    name: 'علی محمدی',
-    role: 'عضو انجمن اولیا و مربیان',
-    image: 'https://images.unsplash.com/photo-1500648766837-d4376d8c8c2c?w=500&q=80'
-  },
-  {
-    name: 'نگار صادقی',
-    role: 'رئیس انجمن اولیا',
-    image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&q=80'
-  }
+  { name: 'فاطمه رضایی', role: 'عضو انجمن اولیا و مربیان', image: makePortrait(4) },
+  { name: 'علی محمدی', role: 'عضو انجمن اولیا و مربیان', image: makePortrait(5) },
+  { name: 'نگار صادقی', role: 'رئیس انجمن اولیا', image: makePortrait(6) }
 ]
 
 export default function App() {
