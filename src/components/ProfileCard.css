@@ -1,0 +1,169 @@
+/* ============================================================
+   ProfileCard — "The Scholar's Canvas"
+   Mofid School Professional Registry
+   ============================================================ */
+
+.profile-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--mofid-linen);
+  border: 1px solid var(--mofid-border);
+  border-radius: 24px;
+  overflow: hidden;
+  /* Frozen silhouette — keeps grid alignment regardless of name length */
+  min-height: 360px;
+  height: 100%;
+  box-shadow: 0 2px 10px rgba(26, 43, 76, 0.04);
+  transition: box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.4s ease;
+  cursor: default;
+  outline: none;
+}
+
+/* Keyboard focus — clear, accessible ring */
+.profile-card:focus-visible {
+  box-shadow: 0 0 0 3px rgba(58, 123, 213, 0.25),
+              0 0 0 1px var(--mofid-blue);
+  border-color: var(--mofid-blue);
+}
+
+/* ---------- Aperture (portrait frame) ---------- */
+.profile-card__aperture {
+  position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: linear-gradient(160deg, #E9ECF2 0%, #DDE2EB 100%);
+  /* Soft-rectangular: rounded top, subtle bottom — blends into card base */
+  border-radius: 24px 24px 8px 8px;
+}
+
+.profile-card__portrait {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Fallback silhouette when no image / image fails */
+.profile-card__portrait--fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #E9ECF2 0%, #D2D8E4 100%);
+}
+
+.profile-card__initials {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--mofid-navy);
+  opacity: 0.22;
+  letter-spacing: 0.04em;
+}
+
+/* Subtle blend from portrait into the card base */
+.profile-card__aperture-fade {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 28%;
+  background: linear-gradient(to bottom, transparent 0%, rgba(250, 250, 250, 0.12) 100%);
+  pointer-events: none;
+}
+
+/* ---------- Identity block ---------- */
+.profile-card__identity {
+  position: relative;
+  flex: 0 0 auto;
+  padding: 1.25rem 1.5rem 1.5rem;
+  text-align: right;
+}
+
+/* Role as a quiet "tag" above the name */
+.profile-card__role {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+  color: var(--mofid-muted);
+  margin-bottom: 0.4rem;
+  /* Truncate long roles to a single line */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Name — the anchor of the hierarchy */
+.profile-card__name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--mofid-navy);
+  /* Graceful 2-line clamp: long names truncate, card height stays frozen */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 3rem; /* reserves 2 lines even for short names */
+}
+
+/* Institutional Line — expands on hover */
+.profile-card__line {
+  display: block;
+  height: 2px;
+  width: 0;
+  margin-top: 0.9rem;
+  /* In RTL the line grows from the right (start edge) */
+  margin-right: auto;
+  background: var(--mofid-blue);
+  border-radius: 2px;
+  transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------- Branding watermark ---------- */
+.profile-card__watermark {
+  position: absolute;
+  bottom: 0.6rem;
+  left: 0.9rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--mofid-navy);
+  opacity: 0.05;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ---------- Hover narrative ---------- */
+.profile-card:hover {
+  border-color: rgba(58, 123, 213, 0.35);
+  box-shadow: 0 20px 40px rgba(26, 43, 76, 0.08);
+  transform: translateY(-2px);
+}
+
+.profile-card:hover .profile-card__portrait {
+  transform: scale(1.04);
+}
+
+.profile-card:hover .profile-card__line {
+  width: 56px;
+}
+
+/* ---------- Responsive scaling ---------- */
+@media (max-width: 768px) {
+  .profile-card {
+    min-height: 320px;
+  }
+  .profile-card__identity {
+    padding: 1.1rem 1.25rem 1.35rem;
+  }
+  .profile-card__name {
+    font-size: 1.125rem;
+    min-height: 2.7rem;
+  }
+}
